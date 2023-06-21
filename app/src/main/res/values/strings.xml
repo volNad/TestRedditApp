@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TestRedditApp</string>
+    <string name="details_description">Image</string>
 </resources>
