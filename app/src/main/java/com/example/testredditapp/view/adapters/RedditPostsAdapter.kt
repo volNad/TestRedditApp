@@ -1,6 +1,7 @@
 package com.example.testredditapp.view.adapters
 
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -24,6 +25,14 @@ class RedditPostsAdapter(
                     val position = bindingAdapterPosition
                     if (position != RecyclerView.NO_POSITION) {
                         getItem(position)?.let { listener.onItemClick(it) }
+                    }
+                }
+
+                binding.rvSaveImage.setOnClickListener {
+                    val position = bindingAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val bitmap = (binding.rvPostImage.drawable as BitmapDrawable?)?.bitmap
+                        bitmap?.let { listener.onSaveImage(it) }
                     }
                 }
             }
@@ -52,6 +61,7 @@ class RedditPostsAdapter(
 
     interface OnItemClickListener {
         fun onItemClick(photo: RedditPost)
+        fun onSaveImage(bitmap: Bitmap)
     }
 
 }
