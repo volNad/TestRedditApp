@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="8dp"
+    android:layout_margin="5dp"
+
+    >
+
+    <ImageView
+        android:id="@+id/rvAuthorImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/rvAuthorValue"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/icon_author"
+        android:contentDescription="@string/post_author_description"
+        />
+
+    <TextView
+        android:id="@+id/rvAuthorValue"
+        app:layout_constraintStart_toEndOf="@id/rvAuthorImage"
+        app:layout_constraintBottom_toBottomOf="@id/rvAuthorImage"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Author"
+        android:layout_marginStart="10dp"
+        />
+
+    <ImageView
+        android:id="@+id/rvSaveImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rvPostImage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_baseline_save_24"
+        android:contentDescription="@string/post_save_description"
+        />
+
+    <ImageView
+        android:id="@+id/rvPostImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvAuthorValue"
+        android:padding="10dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/post_image_description"
+        />
+
+    <ImageView
+        android:id="@+id/rvCommentsImage"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:scaleType="centerCrop"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/rvCommentsValue"
+        app:layout_constraintTop_toBottomOf="@id/rvPostImage"
+        android:src="@drawable/ic_baseline_comment_24"
+        android:contentDescription="@string/post_comments_description"
+        />
+
+    <TextView
+        android:id="@+id/rvCommentsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        tools:text="1234"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/rvCommentsImage"
+        app:layout_constraintTop_toBottomOf="@id/rvPostImage" />
+
+    <TextView
+        android:id="@+id/rvDateValue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rvPostImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="20 hours ago"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
