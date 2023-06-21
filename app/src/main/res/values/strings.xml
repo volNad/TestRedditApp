@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">TestRedditApp</string>
     <string name="details_description">Image</string>
+    <string name="post_image_description">Post image</string>
+    <string name="post_save_description">Save image</string>
+    <string name="post_comments_description">Comments image</string>
+    <string name="post_author_description">Author image</string>
 </resources>
