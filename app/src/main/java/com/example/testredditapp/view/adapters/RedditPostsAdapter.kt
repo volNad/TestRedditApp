@@ -1,5 +1,6 @@
 package com.example.testredditapp.view.adapters
 
+import android.graphics.Bitmap
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -12,10 +13,21 @@ import com.example.testredditapp.databinding.ItemRedditPostPreviewBinding
 import com.example.testredditapp.utils.ConverterHelpers.Companion.timeToNormal
 import com.example.testredditapp.utils.DiffUtilCallBack
 
-class RedditPostsAdapter : PagingDataAdapter<RedditPost, RedditPostsAdapter.ViewHolder>(DiffUtilCallBack()) {
+class RedditPostsAdapter(
+    private val listener: OnItemClickListener
+) : PagingDataAdapter<RedditPost, RedditPostsAdapter.ViewHolder>(DiffUtilCallBack()) {
 
     inner class ViewHolder(val binding: ItemRedditPostPreviewBinding) :
-        RecyclerView.ViewHolder(binding.root)
+        RecyclerView.ViewHolder(binding.root) {
+            init {
+                binding.rvPostImage.setOnClickListener {
+                    val position = bindingAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        getItem(position)?.let { listener.onItemClick(it) }
+                    }
+                }
+            }
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemRedditPostPreviewBinding.inflate(
@@ -36,6 +48,10 @@ class RedditPostsAdapter : PagingDataAdapter<RedditPost, RedditPostsAdapter.View
                 .apply(RequestOptions().placeholder(R.drawable.icon_no_image))
                 .into(holder.binding.rvPostImage)
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(photo: RedditPost)
     }
 
 }

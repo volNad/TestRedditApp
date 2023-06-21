@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.testredditapp.R
+import com.example.testredditapp.data.RedditPost
 import com.example.testredditapp.databinding.FragmentPostsBinding
 import com.example.testredditapp.view.adapters.RedditPostsAdapter
 import com.example.testredditapp.viewmodel.RedditViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class PostsFragment : Fragment(R.layout.fragment_posts) {
+class PostsFragment : Fragment(R.layout.fragment_posts), RedditPostsAdapter.OnItemClickListener {
 
     private val viewModel: RedditViewModel by viewModels()
-    private val redditPostsAdapter: RedditPostsAdapter = RedditPostsAdapter()
+    private val redditPostsAdapter: RedditPostsAdapter = RedditPostsAdapter(this)
     private var _binding: FragmentPostsBinding? = null
     private val binding: FragmentPostsBinding get() = _binding!!
 
@@ -42,5 +44,10 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClick(photo: RedditPost) {
+        val action = PostsFragmentDirections.actionPostsFragmentToDetailsFragment(photo)
+        findNavController().navigate(action)
     }
 }
